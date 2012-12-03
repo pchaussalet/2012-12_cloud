@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Formation Cloud computing</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="reveal.js/css/theme/serif.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+    <style>
+      img { border-width: 0 !important; }
+    </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+        <section>
+          <h1>Formation Cloud computing</h1>
+          <h4>Le cloud, l'infra, les livres et le reste...</h4>
+        </section>
+        <section>
+          <div style="display: inline-block;">
+            <div style="width: 164px; height: 185px; background: url('img/1/dune2houses.png') -237px -110px;" class="fragment">
+              &nbsp;
+            </div>
+            <br/>
+            <b>S</b>aaS,
+          </div>
+          <div style="display: inline-block; margin: 0 2em;">
+            <div style="width: 167px; height: 185px; background: url('img/1/dune2houses.png') -41px -108px;" class="fragment">
+              &nbsp;
+            </div>
+            <br/>
+            <b>P</b>aaS,
+          </div>
+          <div style="display: inline-block;">
+            <div style="width: 164px; height: 185px; background: url('img/1/dune2houses.png') -432px -108px;" class="fragment">
+              &nbsp;
+            </div>
+            <br/>
+            <b>I</b>aaS:
+          </div>
+          <p>
+            <img src="img/1/wtf.jpg" height="200"/><br/>
+          </p>
+        </section>
+        <section>
+          <section>
+            <h3>IaaS, what it is...</h3>
+            <img src="img/2/google_dc.jpg" width="300"/>
+            <img src="img/2/api1.gif" height="225"/>
+          </section>
+          <section>
+            <h3>...And what it isn't</h3>
+            <img src="img/2/rabbitinhat.jpg"/>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h3>AWS' offer</h3>
+            <div class="fragment" style="display: inline-block; text-align: center; width: 200px; vertical-align: top;">
+              <img src="img/3/AWS_Simple_Icons_Amazon_EC2.svg"><br/>
+              Elastic Cloud Computing (EC2)
+            </div>
+            <div class="fragment" style="display: inline-block; text-align: center; width: 200px; vertical-align: top;">
+              <img src="img/3/AWS_Simple_Icons_Storage_Amazon_S3.svg"><br/>
+              Simple Storage Service (S3)
+            </div>
+            <div class="fragment" style="display: inline-block; text-align: center; width: 200px; vertical-align: top;">
+              <img src="img/3/AWS_Simple_Icons_Database_Amazon_RDS.eps.svg"><br/>
+              Relational Database Service (RDS)
+            </div>
+            <div class="fragment" style="display: inline-block; text-align: center; width: 200px; vertical-align: top;">
+              <img src="img/3/AWS_Simple_Icons_Database_Amazon_DynamoDB.svg"><br/>
+              Dynamo DB
+            </div>
+            <div class="fragment" style="display: inline-block; text-align: center; width: 200px; vertical-align: top;">
+              <img src="img/3/AWS_Simple_Icons_Messaging_Amazon_SQS.svg"><br/>
+              Simple Queue Service (SQS)
+            </div>
+            <div class="fragment" style="display: inline-block; text-align: center; width: 200px; vertical-align: top;">
+              <img src="img/3/AWS_Simple_Icons_Monitoring_Amazon_CloudWatch.svg"><br/>
+              Cloudwatch
+            </div>
+            <div class="fragment" style="display: inline-block; text-align: center; width: 200px; vertical-align: top;">
+              <img src="img/3/AWS_Simple_Icons_Networking_Amazon_Elastic_Load_Balancer.svg"><br/>
+              Elastic Load Balancer (ELB)
+            </div>
+            <div class="fragment" style="display: inline-block; text-align: center; width: 200px; vertical-align: top;">
+              <img src="img/3/AWS_Simple_Icons_Deployment_Management_AWS_IAM.svg"><br/>
+              Identity and Access Management (IAM)
+            </div>
+          </section>
+          <section>
+            <img src="img/3/montage.png"/>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h3>Let's create a server</h3>
+            <h4>You'll need :</h4>
+            <div class="fragment">
+              <img src="img/4/server.jpg" height="150"/>
+            </div>
+            <div class="fragment">
+              <img src="img/4/carbo1.jpg" height="150"/>
+            </div>
+            <div class="fragment">
+              <img src="img/4/toolbox.jpg" height="150"/>
+            </div>
+          </section>
+          <section>
+            <h4>Choose an AMI</h4>
+            <img src="img/4/redhat.jpg" height="100"/>
+            <img src="img/4/debian.png" height="100"/>
+            <img src="img/4/windows.png" height="100"/>
+            <img src="img/4/opensolaris.png" height="100"/>
+            <img src="img/4/ubuntu.png" height="100"/>
+            <img src="img/4/suse.png" height="100"/>
+            <img src="img/4/windows_2012.jpg" height="100"/>
+            <h4>Choose an instance type</h4>
+            <img src="img/4/cup-size.jpg" height="180"/>
+            <h4>Understand your security group</h4>
+            <img src="img/4/firewall.jpg" height="180"/>
+          </section>
+        </section>
+        <section>
+          <h3>Building in the cloud</h3>
+          <img src="img/5/empire_state_building.jpg" height="600"/>
+          <h4>Git, Jenkins, Sonar,...</h4>
+        </section>
+        <section>
+          <section>
+            <h3>Say goodbye to smb...</h3>
+            <img src="img/6/tombstone.jpg"/>
+          </section>
+          <section>
+            <h3>...and hello to the greatest storage DMZ</h3>
+            <img src="img/6/most_dangerous_golf.jpg"/>
+          </section>
+        </section>
+        <section>
+          <h3>Store in the cloud</h3>
+          <img src="img/6/save-to-the-cloud.jpg"/>
+          <h4>s3cmd, cloudberry, jets3t,...</h4>
+        </section>
+        <section>
+          <h3>Who needs a MySQL database ?</h3>
+          <img src="img/7/db_mess.png" height="500"/>
+          <h4>RDS for the win !</h4>
+        </section>
+        <section>
+          <section>
+            <h3>High availability is mandatory</h3>
+            <div style="height: 600px">
+              <img src="img/8/sandy.jpg" width="250"/>
+              <img src="img/8/burned_server_room.png" height="250"/><br/>
+              <img src="img/8/wet_server_room.png" height="250"/>
+              <img src="img/8/online-shopping.png" class="fragment" height="250"/>
+            </div>
+            <h4><small>ELB is easy</small></h4>
+            <div style="margin-top: -600px">
+              <img src="img/8/shit_happens.jpg" class="fragment">
+            </div>
+          </section>
+          <section>
+            <h3>Load balancing matters</h3>
+            <img src="img/8/benin.JPG" height="400"/>
+            <h4>ELB is easy !</h4> <small>(and fun...)</small>
+          </section>
+          <section>
+            <h3>Autoscaling is risky business</h3>
+            <img src="img/8/risky.jpg" width="300"/>
+            <img src="img/8/pros-cons.jpg" width="300"/>
+            <div style="margin: 0; display: inline-block; width: 225px; height: 320px; background: url('img/8/infinite.jpg')"></div>
+            <div style="margin-left: -10px; display: inline-block; width: 225px; height: 320px; background: url('img/8/infinite.jpg') -245px 0"></div>
+          </section>
+        </section>
+			</div>
+
+		</div>
+
+		<script src="reveal.js/lib/js/head.min.js"></script>
+		<script src="reveal.js/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'zoom', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
