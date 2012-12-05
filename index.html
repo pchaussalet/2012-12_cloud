@@ -10,7 +10,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 		<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
-		<link rel="stylesheet" href="reveal.js/css/theme/serif.css" id="theme">
+		<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
@@ -144,11 +144,74 @@
             <h4>Understand your security group</h4>
             <img src="img/4/firewall.jpg" height="180"/>
           </section>
+          <section data-markdown>
+            <script type="text/template">
+### EC2 workshop
+#### Upload a keypair
+
+    ec2-import-keypair <KEY_NAME> -f <PUBKEY_FILE>
+
+#### Create a new security group
+
+    ec2-create-group <GROUP_NAME> -d <GROUP_DESCRIPTION>
+    ec2-authorize <GROUP_NAME> -P <PROTOCOL> -p <PORT | PORT_RANGE> (-o <SOURCE_GROUP_NAME> | -s <CIDR>)
+
+#### Create a single, vanilla, instance
+
+    ec2-run-instances <AMI_ID> -t <INSTANCE_TYPE> -k <KEY_NAME>
+
+#### Create a single, customized, instance
+
+    ec2-run-instances <AMI_ID> -t <INSTANCE_TYPE> -k <KEY_NAME> -f <DATA_FILE>
+    or
+    ec2-run-instances <AMI_ID> -t <INSTANCE_TYPE> -k <KEY_NAME> -d <DATA>
+
+#### Create many instances at once
+
+    ec2-run-instances <AMI_ID> -t <INSTANCE_TYPE> -k <KEY_NAME> -n [<MIN>-]<MAX>
+
+#### Create an empty volume
+
+    ec2-create-volume -s <SIZE_IN_GB> -z <AVAILABILITY_ZONE>
+
+#### Attach a volume to a running instance
+
+    ec2-attach-volume <VOLUME_ID> -i <INSTANCE_ID> -d <DEVICE_NAME>
+            </script>
+          </section>
         </section>
         <section>
-          <h3>Building in the cloud</h3>
-          <img src="img/5/empire_state_building.jpg" height="600"/>
-          <h4>Git, Jenkins, Sonar,...</h4>
+          <section>
+            <h3>Building in the cloud</h3>
+            <img src="img/5/empire_state_building.jpg" height="600"/>
+            <h4>Git, Jenkins, Sonar,...</h4>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+### CI workshop
+#### List available security groups
+    ec2-describe-group
+
+#### Create a new security group
+    ec2-create-group <GROUP_NAME> -d <GROUP_DESCRIPTION>
+    ec2-authorize <GROUP_NAME> -P <PROTOCOL> -p <PORT | PORT_RANGE> (-o <SOURCE_GROUP_NAME> | -s <CIDR>)
+
+#### Create a single, vanilla, instance
+    ec2-run-instances <AMI_ID> -t <INSTANCE_TYPE> -k <KEY_NAME>
+
+#### Create an empty volume
+    ec2-create-volume -s <SIZE_IN_GB> -z <AVAILABILITY_ZONE>
+
+#### Attach a volume to a running instance
+    ec2-attach-volume <VOLUME_ID> -i <INSTANCE_ID> -d <DEVICE_NAME>
+
+#### Deploy Git, Jenkins and Nexus
+
+#### Create a single, customized, instance
+    ec2-run-instances <AMI_ID> -t <INSTANCE_TYPE> -k <KEY_NAME> -f <DATA_FILE>
+
+            </script>
+          </section>
         </section>
         <section>
           <section>
@@ -161,14 +224,55 @@
           </section>
         </section>
         <section>
-          <h3>Store in the cloud</h3>
-          <img src="img/6/save-to-the-cloud.jpg"/>
-          <h4>s3cmd, cloudberry, jets3t,...</h4>
+          <section>
+            <h3>Store in the cloud</h3>
+            <img src="img/6/save-to-the-cloud.jpg"/>
+            <h4>s3cmd, cloudberry, jets3t,...</h4>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+### S3 workshop
+#### Create a bucket
+    s3cmd mb <BUCKET_NAME>
+
+#### Put a file in a bucket
+    s3cmd put <FILE> s3://<BUCKET_NAME>/<FILE_KEY>
+
+#### Remove a file from a bucket
+    s3cmd del s3://<BUCKET_NAME>/<FILE_KEY>
+
+#### List file in a bucket
+    s3cmd ls s3://<BUCKET_NAME>/<FILE_KEY>
+
+#### Get a file in a bucket
+    s3cmd get s3://<BUCKET_NAME>/<FILE_KEY>
+
+#### Sync a directory tree with a bucket
+    s3cmd sync <LOCAL_DIR> s3://<BUCKET_NAME>/<PREFIX>
+            </script>
+          </section>
         </section>
         <section>
-          <h3>Who needs a MySQL database ?</h3>
-          <img src="img/7/db_mess.png" height="500"/>
-          <h4>RDS for the win !</h4>
+          <section>
+            <h3>Who needs a MySQL database ?</h3>
+            <img src="img/7/db_mess.png" height="500"/>
+            <h4>RDS for the win !</h4>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+### RDS workshop
+#### Create a RDS Mysql instance
+    rds-create-db-instance <DB_NAME> -s <SIZE_IN_GB> -c <INSTANCE_TYPE> -e <ENGINE_TYPE> -u <ADMIN_USER> -p <ADMIN_PWD>
+
+#### Authorize an instance from CIDR
+    rds-authorize-db-security-group-ingress <GROUP_NAME> -i <CIDR>
+
+#### Authorize an instance from an ec2 security group
+    rds-authorize-db-security-group-ingress <GROUP_NAME> -g <EC2_GROUP_NAME>
+
+#### Create an instance, deploy sonar and use the RDS instance
+            </script>
+          </section>
         </section>
         <section>
           <section>
@@ -196,6 +300,28 @@
             <div style="margin: 0; display: inline-block; width: 225px; height: 320px; background: url('img/8/infinite.jpg')"></div>
             <div style="margin-left: -10px; display: inline-block; width: 225px; height: 320px; background: url('img/8/infinite.jpg') -245px 0"></div>
           </section>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+### Scaling workshop
+#### Create an ELB
+    elb-create-lb <LB_NAME> -l 'lb-port=<LB_PORT>,instance-port=<BE_PORT>,protocol=<PROTOCOL>' -z <AVAILABILITY_ZONE>,<AVALAIBILITY_ZONE>
+
+#### Define healthcheck
+    elb-configure-healthcheck <HEALTHCHECK_NAME> --interval <CHECK_INTERVAL> --timeout <TIMEOUT> --unhealthy-threshold <UNHEALTH_COUNT> --healthy-threshold <HEALTH_COUNT> --target '<HTTP | TCP:<CHECK_PORT>/<QUERY_PATH>'
+
+#### Create launch config
+    as-create-launch-config <LCONFIG_NAME> -i <AMI_ID> -t <INSTANCE_TYPE> --key <KEY_FILE> --group <ELB_GROUP> --user-data-file <DATA_FILE>
+
+#### Create an autoscaling group
+    as-create-auto-scaling-group <AS_GROUP_NAME> -l <LCONFIG_NAME> -z <AVAILABILITY_ZONE> -m <MIN_SIZE> -M <MAX_SIZE> --default-cooldown <COOLDOWN> --load-balancers <ELB_NAME> --grace-period <BOOT_TIME> --health-check-type ELB
+
+#### Create an upscale policy
+    as-put-scaling-policy <POLICY_NAME> -g <AS_GROUP_NAME> -t ChangeInCapacity --adjustment=<CAPACITY_INCREASE>
+
+#### Create an upscale alarm
+    mon-put-metric-alarm <ALARM_NAME> --namespace AWS/ELB --metric-name Latency --statistic Average --period 60 --threshold <LATENCY_SECS> --comparison-operator GreaterThanThreshold --evaluation-periods 2 --alarm-actions <POLICY_ARN>
+          </script>
         </section>
 			</div>
 
